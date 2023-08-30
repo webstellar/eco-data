@@ -3,16 +3,11 @@ import { Page } from "@/types/Page";
 import { Industry } from "@/types/Industry";
 import { Publication } from "./../types/Publication";
 import { Benefit } from "@/types/Benefit";
+import clientConfig from "./config/client-config";
 
 export async function getIndustries(): Promise<Industry[]> {
-  const client = createClient({
-    projectId: "e6ghx5sn",
-    dataset: "production",
-    apiVersion: "2023-08-19",
-  });
-
-  return client.fetch(
-    groq`*[_type = 'industry']{
+  return createClient(clientConfig).fetch(
+    groq`*[_type == 'industry']{
         _id,
         _createdAt,
         name,
@@ -33,14 +28,8 @@ export async function getIndustries(): Promise<Industry[]> {
 }
 
 export async function getPages(): Promise<Page[]> {
-  const client = createClient({
-    projectId: "e6ghx5sn",
-    dataset: "production",
-    apiVersion: "2023-08-19",
-  });
-
-  return client.fetch(
-    groq`*[_type = 'page']{
+  return createClient(clientConfig).fetch(
+    groq`*[_type == 'page']{
         _id,
         _createdAt,
         name,
@@ -76,14 +65,8 @@ export async function getPages(): Promise<Page[]> {
 }
 
 export async function getPublications(): Promise<Publication[]> {
-  const client = createClient({
-    projectId: "e6ghx5sn",
-    dataset: "production",
-    apiVersion: "2023-08-19",
-  });
-
-  return client.fetch(
-    groq`*[_type = 'publication']{
+  return createClient(clientConfig).fetch(
+    groq`*[_type == 'publication']{
         _id,
         _createdAt,
         name,
@@ -96,14 +79,8 @@ export async function getPublications(): Promise<Publication[]> {
 }
 
 export async function getBenefits(): Promise<Benefit[]> {
-  const client = createClient({
-    projectId: "e6ghx5sn",
-    dataset: "production",
-    apiVersion: "2023-08-19",
-  });
-
-  return client.fetch(
-    groq`*[_type = 'benefit']{
+  return createClient(clientConfig).fetch(
+    groq`*[_type == 'benefit']{
         _id,
         _createdAt,
         name,
