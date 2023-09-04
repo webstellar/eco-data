@@ -8,7 +8,10 @@ import "react-toastify/dist/ReactToastify.css";
 import Footer from "@/components/footer/Footer";
 import Newsletter from "@/components/newsletter/Newsletter";
 
-const poppins = Poppins({ weight: ["300", "400", "700"], subsets: ["latin"] });
+const poppins = Poppins({
+  weight: ["200", "300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",

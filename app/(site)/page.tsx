@@ -1,25 +1,26 @@
-import { PortableText } from "@portabletext/react";
-import {
-  getPages,
-  getPublications,
-  getBenefits,
-  getIndustries,
-} from "@/sanity/sanity-utils";
+import { getHomePages } from "@/sanity/sanity-utils";
+
+import Homehero from "@/components/homehero/Homehero";
+import Benefit from "@/components/benefits/Benefit";
+import Feature from "@/components/features/Feature";
+import Homesearch from "@/components/search/Homesearch";
 
 const Home = async () => {
-  const industries = await getIndustries();
+  const home = await getHomePages();
 
   return (
     <div>
-      {industries.map((industry) => (
-        <div key={industry._id}>
-          <h1>{industry.name}</h1>
-
-          <div className="text-lg text-gray-700 mt-5">
-            <PortableText value={industry.content} />
-          </div>
+      {home.map((item) => (
+        <div key={item._id}>
+          <Homehero data={item} />
+          <Benefit data={item} />
+          <Feature data={item} />
         </div>
       ))}
+
+      <div>
+        <Homesearch />
+      </div>
     </div>
   );
 };

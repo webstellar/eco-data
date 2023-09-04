@@ -91,32 +91,51 @@ const page = {
       type: "string",
     },
     {
+      name: "textcolor",
+      title: "Text Hex Color",
+      type: "string",
+    },
+    {
       name: "feature",
       title: "Feature Title",
       type: "string",
     },
     {
-      name: "featureImages",
-      title: "Feature Image",
-      type: "array",
-      of: [
+      name: "featureImageOne",
+      title: "Featured Image One",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
         {
-          type: "object",
-          fields: [
-            {
-              name: "image",
-              title: "image",
-              type: "image",
-              options: { hotspot: true },
-              fields: [
-                {
-                  name: "alt",
-                  title: "Alt",
-                  type: "string",
-                },
-              ],
-            },
-          ],
+          name: "alt",
+          title: "Alt",
+          type: "string",
+        },
+      ],
+    },
+    {
+      name: "featureImageTwo",
+      title: "Featured Image Two",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        {
+          name: "alt",
+          title: "Alt",
+          type: "string",
+        },
+      ],
+    },
+    {
+      name: "featureImageThree",
+      title: "Featured Image Three",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        {
+          name: "alt",
+          title: "Alt",
+          type: "string",
         },
       ],
     },

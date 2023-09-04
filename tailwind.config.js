@@ -14,6 +14,7 @@ module.exports = {
       },
       colors: {
         "eco-blue-100": "#00359B",
+        "eco-green-100": "#1D9313",
       },
     },
   },

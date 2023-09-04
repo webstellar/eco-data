@@ -18,37 +18,37 @@ const links: linkProps[] = [
   {
     id: 1,
     title: "About Us",
-    url: "/about-us",
+    url: "about-us",
   },
   {
     id: 2,
     title: "Taxation",
-    url: "/taxation",
+    url: "taxation",
   },
   {
     id: 3,
     title: "Stock Market",
-    url: "/stock-market",
+    url: "stock-market",
   },
   {
     id: 4,
     title: "Annual Budget",
-    url: "/annual-market",
+    url: "annual-market",
   },
   {
     id: 5,
     title: "Foreign Exchange",
-    url: "/foreign-exchange",
+    url: "foreign-exchange",
   },
   {
     id: 6,
     title: "Industries",
-    url: "/industries",
+    url: "industries",
   },
   {
     id: 7,
     title: "Publications",
-    url: "/publications",
+    url: "publications",
   },
 ];
 
@@ -56,7 +56,7 @@ const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
   return (
-    <header className="bg-transparent">
+    <header className="bg-transparent mb-10">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-4"
         aria-label="Global"
@@ -133,7 +133,7 @@ const Header: React.FC = () => {
                 {links.map((link) => (
                   <Link
                     key={link.id}
-                    href={`/${link.url}`}
+                    href={`${link.url}`}
                     className="-mx-3 block px-3 py-2 text-base font-normal leading-5 text-gray-900 hover:bg-gray-100 hover:font-medium"
                   >
                     {link.title}

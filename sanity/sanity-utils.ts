@@ -35,21 +35,59 @@ export async function getPages(): Promise<Page[]> {
         name,
         'slug': slug.current,
         'image': image.asset->url,
+        'featuredImageOne': featuredImageOne.asset->url,
+        'featuredImageTwo': featuredImageTwo.asset->url,
+        'featuredImageThree': featuredImageThree.asset->url,
         excerpt,
         content,
         color,
+        textcolor,
         benefits[]{
           _id,
           benefitName,
-          benefitDescription,
-          'image': image.asset->url,
+          benefitdescription,
+          'icon': icon.asset->url,
         },
         benefit,
         benefitDescription,
         feature,
-        featureImages[]{
-          'image': image.asset->url
+        features[]{
+          featureTitle,
+          featureDescription,
         },
+        team[]{
+          teamName,
+          position,
+          'image': image.asset->url
+        }
+    }
+    `
+  );
+}
+export async function getHomePages(): Promise<Page[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == 'page' && name == 'Home']{
+        _id,
+        _createdAt,
+        name,
+        'slug': slug.current,
+        'image': image.asset->url,
+        'featuredImageOne': image.asset->url,
+        'featuredImageTwo': image.asset->url,
+        'featuredImageThree': image.asset->url,
+        excerpt,
+        content,
+        color,
+        textcolor,
+        benefits[]{
+          _id,
+          benefitName,
+          benefitdescription,
+          'icon': icon.asset->url,
+        },
+        benefit,
+        benefitDescription,
+        feature,
         features[]{
           featureTitle,
           featureDescription,
@@ -90,5 +128,44 @@ export async function getBenefits(): Promise<Benefit[]> {
         'icon': icon.asset->url
     }
     `
+  );
+}
+
+export async function getPage(slug: string): Promise<Page> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "page" && slug.current == $slug][0]{
+         _id,
+        _createdAt,
+        name,
+        'slug': slug.current,
+        'image': image.asset->url,
+        'featuredImageOne': featuredImageOne.asset->url,
+        'featuredImageTwo': featuredImageTwo.asset->url,
+        'featuredImageThree': featuredImageThree.asset->url,
+        excerpt,
+        content,
+        color,
+        textcolor,
+        benefits[]{
+          _id,
+          benefitName,
+          benefitdescription,
+          'icon': icon.asset->url,
+        },
+        benefit,
+        benefitDescription,
+        feature,
+        features[]{
+          featureTitle,
+          featureDescription,
+        },
+        team[]{
+          teamName,
+          position,
+          'image': image.asset->url
+        }
+    }
+    `,
+    { slug }
   );
 }
