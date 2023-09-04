@@ -3,7 +3,6 @@
 import { Page } from "@/types/Page";
 
 import { PortableText } from "@portabletext/react";
-import Link from "next/link";
 
 interface pageProps {
   data: Page;

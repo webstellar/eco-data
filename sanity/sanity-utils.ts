@@ -58,7 +58,7 @@ export async function getPages(): Promise<Page[]> {
         team[]{
           teamName,
           position,
-          'image': image.asset->url
+          'profile': profile.asset->url
         }
     }
     `
@@ -95,7 +95,7 @@ export async function getHomePages(): Promise<Page[]> {
         team[]{
           teamName,
           position,
-          'image': image.asset->url
+          'profile': profile.asset->url
         }
     }
     `
@@ -162,7 +162,7 @@ export async function getPage(slug: string): Promise<Page> {
         team[]{
           teamName,
           position,
-          'image': image.asset->url
+          'profile': profile.asset->url
         }
     }
     `,
