@@ -33,7 +33,7 @@ const links: linkProps[] = [
   {
     id: 4,
     title: "Annual Budget",
-    url: "annual-market",
+    url: "annual-budget",
   },
   {
     id: 5,
