@@ -18,7 +18,6 @@ export default async function page({ params }: Props) {
       <Pagehero data={page} />
       {page.slug == "contact-us" && <Contactform />}
       {page.slug !== "contact-us" && <Benefits />}
-
       {page.slug == "about-us" && <Team data={page} />}
     </div>
   );

@@ -8,6 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Footer from "@/components/footer/Footer";
 import Newsletter from "@/components/newsletter/Newsletter";
 
+import { Analytics } from "@vercel/analytics/react";
+
 const poppins = Poppins({
   weight: ["200", "300", "400", "500", "600", "700"],
   subsets: ["latin"],
@@ -28,9 +30,10 @@ export default function RootLayout({
       <body className={poppins.className}>
         <Header />
         {children}
-        <ToastContainer />
         <Newsletter />
         <Footer />
+        <ToastContainer />
+        <Analytics />
       </body>
     </html>
   );
