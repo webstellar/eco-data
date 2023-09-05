@@ -169,3 +169,41 @@ export async function getPage(slug: string): Promise<Page> {
     { slug }
   );
 }
+
+export async function getIndustry(slug: string): Promise<Industry> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == 'industry' && slug.current == $slug][0]{
+        _id,
+        _createdAt,
+        name,
+        'slug': slug.current,
+        'image': image.asset->url,
+        content,
+        dataVisuals,
+        category,
+        reportUrl,
+        highlight[]{
+          _id, 
+          title,
+          description
+        }
+    }
+    `,
+    { slug }
+  );
+}
+
+export async function getPublication(slug: string): Promise<Publication> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == 'publication' && slug.current == $slug][0]{
+        _id,
+        _createdAt,
+        name,
+        'slug': slug.current,
+        'image': image.asset->url,
+        content,
+    }
+    `,
+    { slug }
+  );
+}

@@ -26,7 +26,10 @@ const Industrycard = async () => {
             <div className="text-left p-4 grid grid-cols-1 items-start justify-start text-slate-900 gap-y-5">
               <h3 className="font-normal uppercase">{industry.name}</h3>
               <button className="font-semibold text-base">
-                <Link href={`/${industry.slug}`} className="flex items-center">
+                <Link
+                  href={`/industry/${industry.slug}`}
+                  className="flex items-center"
+                >
                   <div className="mr-3">View report</div>
                   <div>
                     <HiChevronRight />
