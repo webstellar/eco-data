@@ -16,26 +16,29 @@ const Pagehero: React.FC<pageProps> = ({ data }) => {
           {data.name}.
         </h1>
 
-        <p className="text-center font-normal text-base text-slate-900">
-          {data.excerpt}
-        </p>
+        {data.excerpt && (
+          <p className="text-center font-normal text-base text-slate-900">
+            {data.excerpt}
+          </p>
+        )}
       </div>
-
-      <div
-        className="mx-auto max-w-7xl flex flex-col h-[500px] items-center justify-center p-6 lg:px-4 rounded-2xl mb-20"
-        style={{
-          backgroundColor: `${data.color}` ? `${data.color}` : "#E5E7EB",
-        }}
-      >
+      {data.content && (
         <div
-          className="lg:w-10/12 text-center font-normal text-base md:text-lg mb-10"
+          className="mx-auto max-w-7xl flex flex-col h-[500px] items-center justify-center p-6 lg:px-4 rounded-2xl mb-20"
           style={{
-            color: `${data.textcolor}` ? `${data.textcolor}` : "#00000070",
+            backgroundColor: `${data.color}` ? `${data.color}` : "#E5E7EB",
           }}
         >
-          <PortableText value={data.content} />
+          <div
+            className="lg:w-10/12 text-center font-normal text-base md:text-lg mb-10"
+            style={{
+              color: `${data.textcolor}` ? `${data.textcolor}` : "#00000070",
+            }}
+          >
+            <PortableText value={data.content} />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
