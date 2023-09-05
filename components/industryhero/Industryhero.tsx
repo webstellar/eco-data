@@ -11,7 +11,7 @@ interface pageProps {
 
 const Industryhero: React.FC<pageProps> = ({ data }) => {
   return (
-    <div className="mx-auto max-w-7xl flex flex-col items-center justify-start p-6 lg:px-4 mb-5">
+    <div className="mx-auto max-w-7xl flex flex-col items-center justify-start p-6 lg:px-4 mb-10">
       <div className="mx-auto grid grid-cols-2 justify-between items-center gap-x-10 gap-y-5">
         <div className="order-2 md:order-1 col-span-full md:col-span-1 flex flex-col mx-auto text-left gap-y-5">
           <div className="font-bold">

@@ -8,9 +8,9 @@ interface pageProps {
 
 const Report: React.FC<pageProps> = ({ data }) => {
   return (
-    <div className="mx-auto max-w-7xl flex flex-col items-center justify-start p-6 lg:px-4 mb-5">
+    <div className="mx-auto max-w-7xl flex flex-col items-start justify-start p-6 lg:px-4 mb-5 gap-y-10">
       <div className="font-bold">
-        <h2 className="text-3xl md:text-5xl">Interactive Report.</h2>
+        <h2 className="text-left text-3xl md:text-5xl">Interactive Report.</h2>
       </div>
       <div dangerouslySetInnerHTML={{ __html: data.dataVisuals }} />
     </div>
