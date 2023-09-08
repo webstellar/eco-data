@@ -1,12 +1,61 @@
+"use client";
+
+import React, { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import { sendContactForm } from "@/utils/api";
+
+type valueProps = {
+  [key: string]: string;
+};
+
+const initState: valueProps = {
+  firstname: "",
+  lastname: "",
+  email: "",
+  organization: "",
+  message: "",
+};
+
 const Contactform: React.FC = () => {
+  const [state, setState] = useState(initState);
+
+  const handleChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) =>
+    setState((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(JSON.stringify(state));
+    try {
+      await sendContactForm(state);
+      toast("Your details was sent", {
+        hideProgressBar: true,
+        autoClose: 2000,
+        type: "success",
+      });
+      setState(initState);
+    } catch (error) {
+      setState((prev) => ({
+        ...prev,
+      }));
+    }
+  };
+
   return (
     <div>
       <div className="mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 mb-20">
         <div className="font-bold mb-10">
           <h2 className="text-3xl md:text-5xl">Let&apos;s work together.</h2>
         </div>
-        <div className="w-3/5 mx-auto">
-          <form>
+        <div className="md:w-4/5 mx-auto">
+          <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-8">
               <div className="grid">
                 <label htmlFor="firstname" className="mb-4">
@@ -15,6 +64,8 @@ const Contactform: React.FC = () => {
                 <input
                   type="text"
                   name="firstname"
+                  value={state.firstname}
+                  onChange={handleChange}
                   className="border-gray-800 border-b-2 border-x-2 focus:outline-none w-full px-2 py-1"
                 />
               </div>
@@ -25,6 +76,8 @@ const Contactform: React.FC = () => {
                 <input
                   type="text"
                   name="lastname"
+                  value={state.lastname}
+                  onChange={handleChange}
                   className="border-gray-800 border-b-2 border-x-2 focus:outline-none w-full px-2 py-1"
                 />
               </div>
@@ -36,6 +89,8 @@ const Contactform: React.FC = () => {
                 <input
                   type="email"
                   name="email"
+                  value={state.email}
+                  onChange={handleChange}
                   className="border-gray-800 border-b-2 border-x-2 focus:outline-none w-full px-2 py-1"
                 />
               </div>
@@ -46,6 +101,8 @@ const Contactform: React.FC = () => {
                 <input
                   type="text"
                   name="organization"
+                  value={state.organization}
+                  onChange={handleChange}
                   className="border-gray-800 border-b-2 border-x-2 focus:outline-none w-full px-2 py-1"
                 />
               </div>
@@ -56,11 +113,13 @@ const Contactform: React.FC = () => {
                 <textarea
                   rows={8}
                   name="message"
+                  value={state.message}
+                  onChange={handleChange}
                   className="border-gray-800 border-2 focus:outline-none w-full px-2 py-2"
                 />
               </div>
 
-              <div className="grid col-span-1 gap-y-2">
+              <div className="grid col-span-1 gap-y-2 w-2/4">
                 <button
                   className="bg-eco-blue-100 text-gray-100 px-8 py-2 "
                   type="submit"
@@ -72,6 +131,7 @@ const Contactform: React.FC = () => {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

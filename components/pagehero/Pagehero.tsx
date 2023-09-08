@@ -27,7 +27,7 @@ const Pagehero: React.FC<pageProps> = ({ data }) => {
       </div>
       {data.content && (
         <div
-          className="mx-auto max-w-7xl flex flex-col h-[500px] items-center justify-center p-6 lg:px-4 rounded-2xl mb-20"
+          className="mx-auto max-w-7xl flex flex-col h-auto md:h-[500px] items-center justify-center p-6 lg:px-4 rounded-2xl mb-20"
           style={{
             backgroundColor: `${data.color}` ? `${data.color}` : "#E5E7EB",
           }}

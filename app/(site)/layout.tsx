@@ -32,8 +32,8 @@ export default function RootLayout({
         {children}
         <Newsletter />
         <Footer />
-        <ToastContainer />
         <Analytics />
+        <ToastContainer />
       </body>
     </html>
   );

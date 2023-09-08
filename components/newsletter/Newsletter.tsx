@@ -1,13 +1,56 @@
 "use client";
 
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { sendNewsletter } from "@/utils/api";
+
+type valueProps = {
+  [key: string]: string;
+};
+
+const initState: valueProps = {
+  email: "",
+};
+
 const Newsletter = () => {
+  const [state, setState] = useState(initState);
+
+  const handleChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) =>
+    setState((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(JSON.stringify(state));
+    try {
+      await sendNewsletter(state);
+      toast("Thanks for signing up", {
+        hideProgressBar: true,
+        autoClose: 2000,
+        type: "success",
+      });
+      setState(initState);
+    } catch (error) {
+      setState((prev) => ({
+        ...prev,
+      }));
+    }
+  };
+
   return (
     <section className="mx-auto max-w-5xl items-center justify-center p-6 lg:px-4 m-10">
       <div className="text-center font-bold text-3xl lg:text-5xl md:leading-loose mb-10">
         Sign up for our weekly newsletter to never miss any our report analysis.
       </div>
 
-      <form action="#">
+      <form onSubmit={handleSubmit}>
         <div className="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
           <div className="relative w-full">
             <label
@@ -28,10 +71,12 @@ const Newsletter = () => {
               </svg>
             </div>
             <input
-              className="block p-3 pl-10 w-full text-base bg-gray-200 text-black rounded-full sm:rounded-none sm:rounded-l-full focus:outline-none"
+              className="z-[1000] block p-3 pl-10 w-full text-base bg-gray-200 text-black rounded-full sm:rounded-none sm:rounded-l-full focus:outline-none"
               placeholder="Enter your email"
               type="email"
               id="email"
+              value={state.email}
+              onChange={handleChange}
               required
             />
           </div>

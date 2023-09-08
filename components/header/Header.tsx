@@ -142,7 +142,7 @@ const Header: React.FC = () => {
               </div>
               <div className="py-6">
                 <Link
-                  href="#form"
+                  href="/contact-us"
                   className="-mx-3 block px-3 py-2.5 text-base font-normal leading-7 text-gray-900 hover:bg-gray-100"
                 >
                   Contact Us
