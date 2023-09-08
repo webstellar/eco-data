@@ -3,8 +3,6 @@ import { deskTool } from "sanity/desk";
 import { visionTool } from "@sanity/vision";
 import schemas from "./sanity/schemas";
 
-//import { visionTool } from "@sanity/vision";
-
 const config = defineConfig({
   name: "default",
   title: "Eco Data",

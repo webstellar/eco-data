@@ -1,77 +1,12 @@
-"use client";
+import { getCategories } from "@/sanity/sanity-utils";
 
 import React from "react";
 import { BsSearch } from "react-icons/bs";
+import Link from "next/link";
 
-interface categoryProps {
-  id?: number;
-  name?: string;
-}
+const Homesearch: React.FC = async () => {
+  const categories = await getCategories();
 
-const categories: categoryProps[] = [
-  {
-    id: 1,
-    name: "Food",
-  },
-  {
-    id: 2,
-    name: "Construction",
-  },
-  {
-    id: 2,
-    name: "Transportation",
-  },
-  {
-    id: 3,
-    name: "Manufacturing",
-  },
-  {
-    id: 4,
-    name: "Agriculture",
-  },
-  {
-    id: 5,
-    name: "Mining",
-  },
-  {
-    id: 6,
-    name: "Health Care",
-  },
-  {
-    id: 7,
-    name: "Petroleum",
-  },
-  {
-    id: 8,
-    name: "Retail",
-  },
-  {
-    id: 9,
-    name: "Energy",
-  },
-  {
-    id: 10,
-    name: "Forestry",
-  },
-  {
-    id: 11,
-    name: "Automotive",
-  },
-  {
-    id: 12,
-    name: "Financial",
-  },
-  {
-    id: 13,
-    name: "Business",
-  },
-  {
-    id: 14,
-    name: "Pharmaceutics",
-  },
-];
-
-const Homesearch: React.FC = () => {
   return (
     <div className="mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 mb-20">
       <div className="max-w-5xl mx-auto mb-10">
@@ -91,10 +26,10 @@ const Homesearch: React.FC = () => {
       <div className="mx-auto w-full grid grid-cols-2 md:grid-cols-5 gap-6 items-center justify-between">
         {categories.map((category) => (
           <button
-            key={category.id}
+            key={category._id}
             className="text-left py-2 pl-4 rounded-lg bg-gray-200 "
           >
-            {category.name}
+            <Link href={`/category/${category.slug}`}>{category.name}</Link>
           </button>
         ))}
       </div>

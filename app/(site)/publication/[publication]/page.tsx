@@ -1,5 +1,4 @@
 import { getPublication } from "@/sanity/sanity-utils";
-import publication from "../../../../sanity/schemas/publication-schema";
 
 type Props = {
   params: { publication: string };

@@ -13,6 +13,6 @@ export type Industry = {
   reportUrl: string;
   content: PortableTextBlock[];
   dataVisuals: PortableTextBlock[];
-  category: string;
+  category: Universal[];
   highlight: Universal[];
 };

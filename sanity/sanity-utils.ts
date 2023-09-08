@@ -4,6 +4,7 @@ import { Industry } from "@/types/Industry";
 import { Publication } from "./../types/Publication";
 import { Benefit } from "@/types/Benefit";
 import clientConfig from "./config/client-config";
+import { Category } from "@/types/Category";
 
 export async function getIndustries(): Promise<Industry[]> {
   return createClient(clientConfig).fetch(
@@ -15,7 +16,11 @@ export async function getIndustries(): Promise<Industry[]> {
         'image': image.asset->url,
         content,
         dataVisuals,
-        category,
+         "category": *[_type=='category' && references(^._id)]{ 
+  	      name,
+  	      slug,
+          image
+	      },
         reportUrl,
         highlight[]{
           _id, 
@@ -180,7 +185,11 @@ export async function getIndustry(slug: string): Promise<Industry> {
         'image': image.asset->url,
         content,
         dataVisuals,
-        category,
+        "category": *[_type=='category' && references(^._id)]{ 
+  	      name,
+  	      slug,
+          image
+	      },
         reportUrl,
         highlight[]{
           _id, 
@@ -202,6 +211,43 @@ export async function getPublication(slug: string): Promise<Publication> {
         'slug': slug.current,
         'image': image.asset->url,
         content,
+    }
+    `,
+    { slug }
+  );
+}
+
+export async function getCategories(): Promise<Category[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == 'category']{
+        _id,
+        _createdAt,
+        name,
+        'slug': slug.current,
+        "industries": *[_type=='industry' && references(^._id)]{ 
+          _id,
+  	      name,
+  	      "slug": slug.current,
+          'image': image.asset->url,
+	      }
+    }
+    `
+  );
+}
+
+export async function getCategory(slug: string): Promise<Category> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == 'category' && slug.current == $slug][0]{
+        _id,
+        _createdAt,
+        name,
+        'slug': slug.current,
+        "industries": *[_type=='industry' && references(^._id)]{ 
+          _id,
+  	      name,
+  	      "slug": slug.current,
+          'image': image.asset->url,
+	      }
     }
     `,
     { slug }
