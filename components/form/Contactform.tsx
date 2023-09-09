@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { sendContactForm } from "@/utils/api";
+import { sendContactForm } from "@/utils/api"; //here
 
 type valueProps = {
   [key: string]: string;
@@ -32,9 +32,9 @@ const Contactform: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(JSON.stringify(state));
+    console.log(JSON.stringify(state)); //here
     try {
-      await sendContactForm(state);
+      await sendContactForm(state); //i didn't fetch directly here rather I added the sendContactform func
       toast("Your details was sent", {
         hideProgressBar: true,
         autoClose: 2000,

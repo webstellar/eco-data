@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react";
 
 import { BsSearch } from "react-icons/bs";
@@ -51,3 +53,7 @@ const Homesearch: React.FC = () => {
 };
 
 export default Homesearch;
+
+//this is the frontend form
+//obivously it should be "use client"
+//sadly when I add it, I can't run the search

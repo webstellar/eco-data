@@ -27,3 +27,6 @@ export const sendNewsletter = async (data: object) =>
     if (!res.ok) throw new Error("Failed to send message");
     return res.json();
   });
+
+  //what do you think?
+  //maybe I separate the request like I did for nodemailer connected to the form

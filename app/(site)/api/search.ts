@@ -19,3 +19,5 @@ export default async function handler(
     res.status(500).json({ message: "Error fetching search results" });
   }
 }
+
+//this is the route under /page/api
