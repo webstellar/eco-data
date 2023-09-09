@@ -1,11 +1,21 @@
-import { getCategories } from "@/sanity/sanity-utils";
+import React, { useState } from "react";
 
-import React from "react";
 import { BsSearch } from "react-icons/bs";
-import Link from "next/link";
+import Categoryblock from "../categoryblock/Categoryblock";
 
-const Homesearch: React.FC = async () => {
-  const categories = await getCategories();
+const Homesearch: React.FC = () => {
+  const [query, setQuery] = useState<string>("");
+  const [results, setResults] = useState<any[]>([]);
+
+  const handleSearch = async () => {
+    try {
+      const response = await fetch(`/api/search?query=${query}`);
+      const data = await response.json();
+      setResults(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 mb-20">
@@ -15,23 +25,26 @@ const Homesearch: React.FC = async () => {
             className="w-[650px] py-6 border-gray-300 bg-gray-200 h-10 px-5 pl-16 rounded-full focus:outline-none font-light text-base"
             type="search"
             name="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             placeholder="Search for data on specific industry"
           />
-          <button type="submit" className="absolute left-0 top-0 mt-6 ml-4">
+          <button
+            onClick={handleSearch}
+            className="absolute left-0 top-0 mt-6 ml-4"
+          >
             <BsSearch />
           </button>
         </div>
       </div>
+      <Categoryblock />
 
-      <div className="mx-auto w-full grid grid-cols-2 md:grid-cols-5 gap-6 items-center justify-between">
-        {categories.map((category) => (
-          <button
-            key={category._id}
-            className="text-left py-2 pl-4 rounded-lg bg-gray-200 "
-          >
-            <Link href={`/category/${category.slug}`}>{category.name}</Link>
-          </button>
-        ))}
+      <div>
+        <ul>
+          {results.map((result) => (
+            <li key={result._id}>{result.title}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );

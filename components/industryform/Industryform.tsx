@@ -33,7 +33,7 @@ const Industryform: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(JSON.stringify(state));
+    //console.log(JSON.stringify(state));
     try {
       await sendIndustryForm(state);
       toast("Your details was sent", {

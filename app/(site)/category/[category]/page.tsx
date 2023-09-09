@@ -1,7 +1,6 @@
 import { getCategory } from "@/sanity/sanity-utils";
 import Categoryhero from "@/components/categoryhero/Categoryhero";
-import Industrycard from "@/components/industry/Industrycard";
-import Categorycard from "@/components/category/CategoryCard";
+import Categorycard from "@/components/category/Categorycard";
 
 type Props = {
   params: { category: string };
