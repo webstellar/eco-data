@@ -19,7 +19,7 @@ const Search: React.FC = () => {
         method: "POST",
       });
       const data = await response.json();
-      console.log(data);
+
       setResults(data);
     };
 
@@ -28,7 +28,7 @@ const Search: React.FC = () => {
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(query);
+
     try {
       const response = await fetch(`/api/search?query=${query}`, {
         method: "POST",
@@ -60,8 +60,8 @@ const Search: React.FC = () => {
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 mb-20 -mt-5">
-        <div className="grid grid-cols-4 mx-auto justify-start items-center">
+      <div className="mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 -mt-5">
+        <div className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 mx-auto justify-start items-center">
           {results &&
             results.map((industry) => (
               <div
@@ -69,11 +69,11 @@ const Search: React.FC = () => {
                 className="rounded-3xl bg-slate-200 flex flex-col pb-5"
               >
                 <Image
-                  className="w-full rounded-t-3xl"
+                  className="w-full md:h-[180px] rounded-t-3xl"
                   src={industry.image}
                   alt={industry.name}
                   width={300}
-                  height={300}
+                  height={500}
                 />
                 <div className="text-left p-4 grid grid-cols-1 items-start justify-start text-slate-900 gap-y-5">
                   <h3 className="font-normal uppercase">{industry.name}</h3>

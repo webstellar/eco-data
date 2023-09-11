@@ -2,14 +2,6 @@ import { NextResponse } from "next/server";
 import { NextApiRequest, NextApiResponse } from "next";
 import { createClient } from "next-sanity";
 
-// Define a custom headers interface
-interface CustomHeaders {
-  "content-type"?: string;
-  "cache-control"?: string;
-  Accept?: string;
-  "your-custom-header"?: string; // Add your custom headers here
-}
-
 export const client = createClient({
   projectId: "e6ghx5sn",
   dataset: "production",
