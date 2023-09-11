@@ -133,7 +133,7 @@ const Header: React.FC = () => {
                 {links.map((link) => (
                   <Link
                     key={link.id}
-                    href={`${link.url}`}
+                    href={`/${link.url}`}
                     className="-mx-3 block px-3 py-2 text-base font-normal leading-5 text-gray-900 hover:bg-gray-100 hover:font-medium"
                   >
                     {link.title}

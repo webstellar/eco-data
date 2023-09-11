@@ -46,9 +46,9 @@ const Newsletter = () => {
 
   return (
     <section className="mx-auto max-w-5xl items-center justify-center p-6 lg:px-4 m-10">
-      <div className="text-center font-bold text-3xl lg:text-5xl md:leading-loose mb-10">
+      <h3 className="text-center font-bold text-3xl lg:text-5xl md:leading-loose mb-10">
         Sign up for our weekly newsletter to never miss any our report analysis.
-      </div>
+      </h3>
 
       <form onSubmit={handleSubmit}>
         <div className="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
@@ -71,10 +71,12 @@ const Newsletter = () => {
               </svg>
             </div>
             <input
-              className="z-[1000] block p-3 pl-10 w-full text-base bg-gray-200 text-black rounded-full sm:rounded-none sm:rounded-l-full focus:outline-none"
+              className="block p-3 pl-10 w-full text-base bg-gray-200 text-black rounded-full sm:rounded-none sm:rounded-l-full focus:outline-none"
               placeholder="Enter your email"
+              name="email"
               type="email"
               id="email"
+              autoComplete="off"
               value={state.email}
               onChange={handleChange}
               required

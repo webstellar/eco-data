@@ -4,9 +4,8 @@ import Pagehero from "@/components/pagehero/Pagehero";
 import Benefits from "@/components/benefits/Benefits";
 import Team from "@/components/team/Team";
 import Contactform from "@/components/form/Contactform";
-import Homesearch from "@/components/search/Homesearch";
-import Industrycard from "@/components/industry/Industrycard";
 import Publicationcard from "@/components/publication/Publicationcard";
+import Search from "../search";
 
 type Props = {
   params: { page: string };
@@ -22,8 +21,7 @@ export default async function page({ params }: Props) {
       {page.slug == "contact-us" && <Contactform />}
       {page.slug !== "contact-us" && page.slug !== "industries" && <Benefits />}
       {page.slug == "about-us" && <Team data={page} />}
-      {page.slug == "industries" && <Homesearch />}
-      {page.slug == "industries" && <Industrycard />}
+      {page.slug == "industries" && <Search />}
       {page.slug == "publications" && <Publicationcard />}
     </div>
   );

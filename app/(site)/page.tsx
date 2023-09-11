@@ -3,7 +3,7 @@ import { getHomePages } from "@/sanity/sanity-utils";
 import Homehero from "@/components/homehero/Homehero";
 import Benefit from "@/components/benefits/Benefit";
 import Feature from "@/components/features/Feature";
-import Homesearch from "@/components/search/Homesearch";
+import Categoryblock from "@/components/categoryblock/Categoryblock";
 
 const Home = async () => {
   const home = await getHomePages();
@@ -15,12 +15,9 @@ const Home = async () => {
           <Homehero data={item} />
           <Benefit data={item} />
           <Feature data={item} />
+          <Categoryblock />
         </div>
       ))}
-
-      <div>
-        <Homesearch />
-      </div>
     </div>
   );
 };

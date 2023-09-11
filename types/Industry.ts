@@ -6,7 +6,7 @@ type Universal = {
 
 export type Industry = {
   _id: string;
-  _createdAt: Date;
+  _createdAt?: Date;
   name: string;
   slug: string;
   image: string;
