@@ -17,36 +17,41 @@ interface linkProps {
 const links: linkProps[] = [
   {
     id: 1,
+    title: "Home",
+    url: "/",
+  },
+  {
+    id: 2,
     title: "About Us",
     url: "about-us",
   },
   {
-    id: 2,
+    id: 3,
     title: "Taxation",
     url: "taxation",
   },
   {
-    id: 3,
-    title: "Stock Market",
+    id: 4,
+    title: "Stock",
     url: "stock-market",
   },
   {
-    id: 4,
-    title: "Annual Budget",
+    id: 5,
+    title: "Annual",
     url: "annual-budget",
   },
   {
-    id: 5,
+    id: 6,
     title: "Foreign Exchange",
     url: "foreign-exchange",
   },
   {
-    id: 6,
+    id: 7,
     title: "Industries",
     url: "industries",
   },
   {
-    id: 7,
+    id: 8,
     title: "Publications",
     url: "publications",
   },
@@ -88,7 +93,7 @@ const Header: React.FC = () => {
               links.map((link) => (
                 <Link
                   href={`/${link.url}`}
-                  className="text-base font-normal leading-6 text-gray-900"
+                  className="text-base font-normal leading-6 text-gray-900 hover:text-eco-blue-100 active:text-eco-blue-100 active:font-bold hover:font-semibold"
                   key={link.id}
                 >
                   {link.title}
