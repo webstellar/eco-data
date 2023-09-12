@@ -29,25 +29,26 @@ const Benefits = async () => {
       </div>
 
       <div className="md:col-span-3 w-full grid md:grid-cols-2 gap-x-10 gap-y-5">
-        {benefits.map((benefit) => (
-          <div
-            key={benefit._id}
-            className="bg-gray-200 p-6 px-10 rounded-3xl flex flex-col gap-5 items-start justify-start"
-          >
-            <div>
-              <Image
-                src={benefit.icon}
-                alt={benefit.name}
-                width={50}
-                height={50}
-              />
+        {benefits &&
+          benefits.map((benefit) => (
+            <div
+              key={benefit._id}
+              className="bg-gray-200 p-6 px-10 rounded-3xl flex flex-col gap-5 items-start justify-start"
+            >
+              <div>
+                <Image
+                  src={benefit.icon}
+                  alt={benefit.name}
+                  width={50}
+                  height={50}
+                />
+              </div>
+              <div className="text-xl font-semibold">{benefit.name}</div>
+              <div>
+                <PortableText value={benefit.content} />
+              </div>
             </div>
-            <div className="text-xl font-semibold">{benefit.name}</div>
-            <div>
-              <PortableText value={benefit.content} />
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );

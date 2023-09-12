@@ -13,14 +13,15 @@ const Keypoint: React.FC<pageProps> = ({ data }) => {
         <h2 className="text-3xl md:text-5xl">Keypoint.</h2>
       </div>
       <div className="grid grid-cols-1 gap-y-8">
-        {data.highlight.map((key) => (
-          <div
-            key={key._id}
-            className="text-gray-900 text-base py-4 px-8 bg-gray-200 rounded-xl"
-          >
-            {key.description}
-          </div>
-        ))}
+        {data.highlight &&
+          data?.highlight.map((key) => (
+            <div
+              key={key._id}
+              className="text-gray-900 text-base py-4 px-8 bg-gray-200 rounded-xl"
+            >
+              {key.description}
+            </div>
+          ))}
       </div>
     </div>
   );
