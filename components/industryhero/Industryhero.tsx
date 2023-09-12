@@ -18,14 +18,15 @@ const Industryhero: React.FC<pageProps> = ({ data }) => {
             <h1 className="text-3xl md:text-5xl">{data.name}.</h1>
           </div>
 
-          {data?.category.map((item, i) => (
-            <div
-              key={i}
-              className="text-eco-green-100 font-semibold text-sm capitalize"
-            >
-              {item.name}
-            </div>
-          ))}
+          {data.category &&
+            data?.category.map((item, i) => (
+              <div
+                key={i}
+                className="text-eco-green-100 font-semibold text-sm capitalize"
+              >
+                {item.name}
+              </div>
+            ))}
 
           <div className="text-gray-900 font-normal">
             <PortableText value={data.content} />

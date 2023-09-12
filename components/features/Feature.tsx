@@ -15,7 +15,7 @@ const Feature: React.FC<pageProps> = ({ data }) => {
     <div className="mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 mb-20">
       <div className="max-w-5xl mx-auto mb-5 md:mb-10">
         <h2 className="font-bold text-4xl md:text-5xl md:text-center text-slate-900 md:leading-relaxed">
-          {data.feature}.
+          {data?.feature}.
         </h2>
       </div>
 
@@ -25,8 +25,8 @@ const Feature: React.FC<pageProps> = ({ data }) => {
             <div className="h-full">
               <Image
                 className="object-cover rounded-3xl md:rounded-l-3xl"
-                src={data.featuredImageOne}
-                alt={data.feature}
+                src={data?.featuredImageOne}
+                alt={data?.feature}
                 width={450}
                 height={900}
               />
@@ -36,7 +36,7 @@ const Feature: React.FC<pageProps> = ({ data }) => {
             <div>
               <Image
                 className="max-w-full rounded-r-3xl"
-                src={data.featuredImageTwo}
+                src={data?.featuredImageTwo}
                 alt=""
                 width={450}
                 height={450}
@@ -46,7 +46,7 @@ const Feature: React.FC<pageProps> = ({ data }) => {
             <div>
               <Image
                 className="h-auto max-w-full rounded-r-3xl"
-                src={data.featuredImageThree}
+                src={data?.featuredImageThree}
                 alt=""
                 width={450}
                 height={450}
@@ -56,24 +56,25 @@ const Feature: React.FC<pageProps> = ({ data }) => {
         </div>
 
         <div className="col-span-1 grid grid-cols-1 justify-stretch items-start gap-y-10">
-          {data.features.map((feature, i) => (
-            <div key={i}>
-              <Disclosure>
-                {({ open }) => (
-                  <>
-                    <Disclosure.Button>
-                      <div className="text-left flex gap-x-10 items-center justify-between font-medium text-xl text-slate-900 mb-5">
-                        {feature.featureTitle}
-                      </div>
-                    </Disclosure.Button>
-                    <Disclosure.Panel>
-                      {feature.featureDescription}
-                    </Disclosure.Panel>
-                  </>
-                )}
-              </Disclosure>
-            </div>
-          ))}
+          {data.features &&
+            data.features.map((feature, i) => (
+              <div key={i}>
+                <Disclosure>
+                  {({ open }) => (
+                    <>
+                      <Disclosure.Button>
+                        <div className="text-left flex gap-x-10 items-center justify-between font-medium text-xl text-slate-900 mb-5">
+                          {feature.featureTitle}
+                        </div>
+                      </Disclosure.Button>
+                      <Disclosure.Panel>
+                        {feature.featureDescription}
+                      </Disclosure.Panel>
+                    </>
+                  )}
+                </Disclosure>
+              </div>
+            ))}
 
           <Disclosure></Disclosure>
         </div>

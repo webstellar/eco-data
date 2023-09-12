@@ -8,7 +8,6 @@ import { HiChevronRight } from "react-icons/hi2";
 import { BsSearch } from "react-icons/bs";
 import IndustryCategoryblock from "@/components/categoryblock/IndustryCategoryblock";
 import { Industry } from "@/types/Industry";
-import Categoryblock from "@/components/categoryblock/Categoryblock";
 
 const Search: React.FC = () => {
   const [query, setQuery] = useState<string>("");
@@ -62,19 +61,19 @@ const Search: React.FC = () => {
       </div>
 
       <div className="mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 -mt-5">
-        <div className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-x-10 mx-auto justify-start items-start">
+        <div className="w-full grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-x-10 gap-y-5 mx-auto justify-between items-stretch">
           {results &&
             results.map((industry) => (
               <div
                 key={industry._id}
-                className="rounded-3xl bg-slate-200 flex flex-col pb-5 justify-between items-stretch"
+                className="rounded-3xl bg-slate-200 flex flex-col pb-5 justify-start items-center"
               >
                 <Image
-                  className="w-full md:h-[180px] rounded-t-3xl"
+                  className="w-full md:h-[180px] rounded-t-3xl object-cover"
                   src={industry.image}
                   alt={industry.name}
                   width={300}
-                  height={500}
+                  height={300}
                 />
                 <div className="text-left p-4 grid grid-cols-1 items-start justify-start text-slate-900 gap-y-5">
                   <h3 className="font-normal uppercase">{industry.name}</h3>

@@ -84,15 +84,16 @@ const Header: React.FC = () => {
         {/* Desktop Navigation and Button*/}
         <div className="hidden lg:flex lg:justify-end items-center gap-x-5">
           <Popover.Group className="hidden lg:flex lg:gap-x-5">
-            {links.map((link) => (
-              <Link
-                href={`/${link.url}`}
-                className="text-base font-normal leading-6 text-gray-900"
-                key={link.id}
-              >
-                {link.title}
-              </Link>
-            ))}
+            {links &&
+              links.map((link) => (
+                <Link
+                  href={`/${link.url}`}
+                  className="text-base font-normal leading-6 text-gray-900"
+                  key={link.id}
+                >
+                  {link.title}
+                </Link>
+              ))}
           </Popover.Group>
 
           <button className="bg-eco-blue-100 py-2 px-3 rounded-full">
@@ -130,15 +131,16 @@ const Header: React.FC = () => {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
-                {links.map((link) => (
-                  <Link
-                    key={link.id}
-                    href={`/${link.url}`}
-                    className="-mx-3 block px-3 py-2 text-base font-normal leading-5 text-gray-900 hover:bg-gray-100 hover:font-medium"
-                  >
-                    {link.title}
-                  </Link>
-                ))}
+                {links &&
+                  links.map((link) => (
+                    <Link
+                      key={link.id}
+                      href={`/${link.url}`}
+                      className="-mx-3 block px-3 py-2 text-base font-normal leading-5 text-gray-900 hover:bg-gray-100 hover:font-medium"
+                    >
+                      {link.title}
+                    </Link>
+                  ))}
               </div>
               <div className="py-6">
                 <Link

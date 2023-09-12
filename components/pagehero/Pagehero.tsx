@@ -13,15 +13,15 @@ const Pagehero: React.FC<pageProps> = ({ data }) => {
     <div className="mx-auto max-w-7xl flex flex-col items-center justify-center p-6 lg:px-4 mb-5">
       <div
         className="lg:w-6/12"
-        style={{ marginBottom: `${data.excerpt}` ? "2.5rem" : "0rem" }}
+        style={{ marginBottom: `${data?.excerpt}` ? "2.5rem" : "0rem" }}
       >
         <h1 className="text-center font-bold text-5xl md:text-7xl text-slate-900 md:leading-normal">
-          {data.name}.
+          {data?.name}.
         </h1>
 
         {data.excerpt && (
           <p className="text-center font-normal text-base text-slate-900">
-            {data.excerpt}
+            {data?.excerpt}
           </p>
         )}
       </div>

@@ -16,29 +16,31 @@ const Team: React.FC<pageProps> = ({ data }) => {
         </h2>
       </div>
 
-      <div className="w-full grid md:grid-cols-4 gap-x-4 gap-y-8 items-center justify-between mx-auto">
-        {data.team.map((member, i) => (
-          <div
-            key={i}
-            className="mx-auto col-span-1 grid grid-cols-1 gap-y-3 items-center justify-center"
-          >
-            <div className="h-[200px] w-[200px]">
-              <Image
-                src={member.profile}
-                alt={member.teamName}
-                height={200}
-                width={400}
-                className="rounded-full object-cover h-[200px] w-full"
-              />
+      <div className="w-full grid md:grid-cols-4 gap-x-4 gap-y-10 items-center justify-start mx-auto">
+        {data.team &&
+          data.team.map((member, i) => (
+            <div
+              key={i}
+              className="mx-auto col-span-1 grid grid-cols-1 gap-y-5 items-center justify-center"
+            >
+              <div className="h-[200px] w-[200px]">
+                <Image
+                  src={member.profile}
+                  alt={member.teamName}
+                  height={200}
+                  width={400}
+                  className="rounded-full object-cover h-[200px] w-full"
+                />
+              </div>
+
+              <div className="font-semibold text-base md:text-lg uppercase text-center">
+                {member.teamName}
+              </div>
+              <div className="font-normal text-base text-center italic">
+                {member.position}
+              </div>
             </div>
-            <div className="font-semibold text-base md:text-lg uppercase text-center">
-              {member.teamName}
-            </div>
-            <div className="font-normal text-base text-center italic">
-              {member.position}
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );
