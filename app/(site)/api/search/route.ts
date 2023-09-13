@@ -4,8 +4,11 @@ import { NextApiRequest } from "next";
 import { client } from "@/sanity/client";
 import { getQSParamFromURL } from "@/utils/getParamFromURL";
 
-export async function POST(req: NextApiRequest) {
-  const query = getQSParamFromURL("query", req.url);
+export async function POST(request: Request) {
+  const query = getQSParamFromURL("query", request.url);
+
+  //const query = request.url;
+
   console.log("QUERY = " + query);
 
   try {
