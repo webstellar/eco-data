@@ -1,18 +1,8 @@
 import { NextResponse } from "next/server";
 import { NextApiRequest } from "next";
-import { createClient } from "next-sanity";
 
+import { client } from "@/sanity/client";
 import { getQSParamFromURL } from "@/utils/getParamFromURL";
-
-export const client = createClient({
-  projectId: "e6ghx5sn",
-  dataset: "production",
-  apiVersion: "2023-08-19",
-  useCdn: false,
-  token: process.env.SANITY_TOKEN,
-});
-
-
 
 export async function POST(req: NextApiRequest) {
   const query = getQSParamFromURL("query", req.url);
