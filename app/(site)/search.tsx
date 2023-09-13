@@ -6,12 +6,23 @@ import Image from "next/image";
 
 import { HiChevronRight } from "react-icons/hi2";
 import { BsSearch } from "react-icons/bs";
-import IndustryCategoryblock from "@/components/categoryblock/IndustryCategoryblock";
 import { Industry } from "@/types/Industry";
+
+import { SkeletonCard } from "@/components/skeletion/Skeletioncard";
+import Loader from "@/components/loader/Loader";
 
 const Search: React.FC = () => {
   const [query, setQuery] = useState<string>("");
   const [results, setResults] = useState<Industry[]>([]);
+  const [loading, setLoading] = useState<Boolean>(true);
+
+  useEffect(() => {
+    if (results) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }
+  }, [results]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +51,8 @@ const Search: React.FC = () => {
     }
   }
 
+  let skeletonCards = Array(5).fill(0);
+
   return (
     <div className="-mt-20 mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 mb-20">
       <div className="max-w-5xl mx-auto mb-10">
@@ -61,37 +74,40 @@ const Search: React.FC = () => {
       </div>
 
       <div className="mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 -mt-5">
-        <div className="w-full grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-x-10 gap-y-5 mx-auto justify-between items-stretch">
-          {results &&
-            results.map((industry) => (
-              <div
-                key={industry._id}
-                className="rounded-3xl bg-slate-200 flex flex-col pb-5 justify-start items-center"
-              >
-                <Image
-                  className="w-full md:h-[180px] rounded-t-3xl object-cover"
-                  src={industry.image}
-                  alt={industry.name}
-                  width={300}
-                  height={300}
-                />
-                <div className="text-left p-4 grid grid-cols-1 items-start justify-start text-slate-900 gap-y-5">
-                  <h3 className="font-normal uppercase">{industry.name}</h3>
-                  <button className="font-semibold text-base">
-                    <Link
-                      href={`/industry/${industry.slug}`}
-                      className="flex items-center"
-                    >
-                      <div className="mr-3">View report</div>
-                      <div>
-                        <HiChevronRight />
-                      </div>
-                    </Link>
-                  </button>
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className="w-full grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-x-10 gap-y-5 mx-auto justify-between items-stretch">
+            {results &&
+              results.map((industry) => (
+                <div
+                  key={industry._id}
+                  className="rounded-3xl bg-slate-200 flex flex-col pb-5 justify-start items-center"
+                >
+                  <Link href={`/industry/${industry.slug}`}>
+                    <Image
+                      className="w-full md:h-[180px] rounded-t-3xl object-cover"
+                      src={industry.image}
+                      alt={industry.name}
+                      width={300}
+                      height={300}
+                    />
+                    <div className="text-left p-3 grid grid-cols-1 items-end justify-end text-slate-900 gap-y-5">
+                      <h3 className="font-normal uppercase text-base">
+                        {industry.name}
+                      </h3>
+                      <button className="font-semibold text-base flex items-center">
+                        <div className="mr-3">View report</div>
+                        <div>
+                          <HiChevronRight />
+                        </div>
+                      </button>
+                    </div>
+                  </Link>
                 </div>
-              </div>
-            ))}
-        </div>
+              ))}
+          </div>
+        )}
       </div>
     </div>
   );
