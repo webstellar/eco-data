@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest } from "next";
 import { createClient } from "next-sanity";
+
+import { getQSParamFromURL } from "@/utils/getParamFromURL";
 
 export const client = createClient({
   projectId: "e6ghx5sn",
@@ -10,15 +12,7 @@ export const client = createClient({
   token: process.env.SANITY_TOKEN,
 });
 
-export function getQSParamFromURL(
-  key: string,
-  url: string | undefined
-): string | null {
-  if (!url) return null;
-  const search = new URL(url).search;
-  const urlParams = new URLSearchParams(search);
-  return urlParams.get(key);
-}
+
 
 export async function POST(req: NextApiRequest) {
   const query = getQSParamFromURL("query", req.url);
