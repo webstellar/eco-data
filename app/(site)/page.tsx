@@ -15,7 +15,6 @@ const Home = async () => {
           <Homehero data={item} />
           <Benefit data={item} />
           <Feature data={item} />
-          <Categoryblock />
         </div>
       ))}
     </div>

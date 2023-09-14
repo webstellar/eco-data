@@ -10,10 +10,10 @@ export type Industry = {
   name: string;
   slug: string;
   image: string;
-  reportUrl: string;
+  report: string;
   content: PortableTextBlock[];
   dataVisuals: PortableTextBlock[];
   category: Universal[];
   highlight: Universal[];
-  infographics: string
+  infographics: string;
 };

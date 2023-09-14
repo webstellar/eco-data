@@ -1,14 +1,11 @@
 "use client";
 
 import React, { useState, useEffect, FormEvent } from "react";
-import Link from "next/link";
-import Image from "next/image";
-
-import { HiChevronRight } from "react-icons/hi2";
 import { BsSearch } from "react-icons/bs";
-
 import Loader from "@/components/loader/Loader";
 import IndustryCategoryblock from "@/components/categoryblock/IndustryCategoryblock";
+import Industriescard from "@/components/industry/IndustriesCard";
+import { Industry } from "@/types/Industry";
 
 type Universal = {
   [key: string]: string;
@@ -25,17 +22,10 @@ type Category = {
   industries: Universal[];
 };
 
-type Industry = {
-  _id?: string;
-  name: string;
-  image: string;
-  slug?: string;
-  category: Category | undefined;
-};
-
 const Search: React.FC = () => {
   const [query, setQuery] = useState<string>("");
   const [results, setResults] = useState<Industry[]>([]);
+  const [category, setCategory] = useState<Category[]>([]);
   const [loading, setLoading] = useState<Boolean>(true);
 
   useEffect(() => {
@@ -59,6 +49,19 @@ const Search: React.FC = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchCategory = async () => {
+      const response = await fetch("/api/category", {
+        method: "GET",
+      });
+      const data = await response.json();
+
+      setCategory(data);
+    };
+
+    fetchCategory();
+  }, []);
+
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -75,10 +78,8 @@ const Search: React.FC = () => {
 
   //let skeletonCards = Array(5).fill(0);
 
-  console.log("result = " + results);
-
   return (
-    <div className="-mt-20 mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 mb-20">
+    <div className="-mt-20 mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 mb-10">
       <div className="max-w-5xl mx-auto mb-10">
         <div className="pt-2 relative mx-auto max-w-6xl text-gray-600 flex justify-center items-center">
           <form onSubmit={onSubmit}>
@@ -97,17 +98,12 @@ const Search: React.FC = () => {
         </div>
       </div>
 
-      {/* 
-      <div className="mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 mb-20">
-        <div className="mx-auto w-full grid grid-cols-2 md:grid-cols-5 gap-6 items-center justify-between">
-          {!results.category
-            ? undefined
-            : results?.category.map((item: Category) => (
-                <IndustryCategoryblock key={item._id} data={item} />
-              ))}
-        </div>
+      <div className="mx-auto w-full grid grid-cols-2 md:grid-cols-5 gap-6 justify-between items-stretch">
+        {category &&
+          category.map((item) => (
+            <IndustryCategoryblock key={item._id} data={item} />
+          ))}
       </div>
-      */}
 
       <div className="mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 -mt-5">
         {loading ? (
@@ -116,31 +112,7 @@ const Search: React.FC = () => {
           <div className="w-full grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-x-10 gap-y-5 mx-auto justify-between items-stretch">
             {results &&
               results.map((industry) => (
-                <div
-                  key={industry._id}
-                  className="rounded-3xl bg-slate-200 flex flex-col pb-5 justify-start items-center"
-                >
-                  <Link href={`/industry/${industry.slug}`}>
-                    <Image
-                      className="w-full md:h-[180px] rounded-t-3xl object-cover"
-                      src={industry.image}
-                      alt={industry.name}
-                      width={300}
-                      height={300}
-                    />
-                    <div className="text-left p-3 grid grid-cols-1 items-end justify-end text-slate-900 gap-y-5">
-                      <h3 className="font-normal uppercase text-base">
-                        {industry.name}
-                      </h3>
-                      <button className="font-semibold text-base flex items-center">
-                        <div className="mr-3">View report</div>
-                        <div>
-                          <HiChevronRight />
-                        </div>
-                      </button>
-                    </div>
-                  </Link>
-                </div>
+                <Industriescard key={industry._id} data={industry} />
               ))}
           </div>
         )}

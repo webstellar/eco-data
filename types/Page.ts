@@ -1,4 +1,5 @@
 import { PortableTextBlock } from "sanity";
+import Infographics from "@/components/infographics/Infographics";
 
 type Universal = {
   [key: string]: string;
@@ -10,6 +11,9 @@ export type Page = {
   name: string;
   slug: string;
   image: string;
+  infographics: string;
+  carousel: Universal[];
+  report: string;
   excerpt: string;
   content: PortableTextBlock[];
   benefits: Universal[];

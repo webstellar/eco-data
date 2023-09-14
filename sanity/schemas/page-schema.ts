@@ -30,6 +30,26 @@ const page = {
       ],
     },
     {
+      name: "carousel",
+      title: "Home Carousel",
+      type: "array",
+      of: [
+        {
+          name: "image",
+          title: "image",
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              title: "Alt",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: "infographics",
       title: "Infographics",
       type: "image",
@@ -41,6 +61,11 @@ const page = {
           type: "string",
         },
       ],
+    },
+    {
+      title: "Interactive Report",
+      name: "report",
+      type: "string",
     },
     {
       name: "excerpt",

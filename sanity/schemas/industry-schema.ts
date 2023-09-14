@@ -55,15 +55,9 @@ const industry = {
       of: [{ type: "block" }],
     },
     {
-      name: "dataVisuals",
-      title: "Data Visualizations",
-      type: "array",
-      of: [{ type: "block" }],
-    },
-    {
-      title: "Report URL",
-      name: "reportUrl",
-      type: "url",
+      title: "Interactive Report",
+      name: "report",
+      type: "string",
     },
     {
       title: "Highlights",

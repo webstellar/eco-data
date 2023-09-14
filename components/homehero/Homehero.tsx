@@ -11,9 +11,9 @@ interface pageProps {
 
 const Homehero: React.FC<pageProps> = ({ data }) => {
   return (
-    <div className="mx-auto max-w-7xl flex flex-col h-[500px] items-center justify-center p-6 lg:px-4 bg-slate-200 rounded-2xl mb-20">
+    <div className="mx-auto max-w-7xl flex flex-col h-[600px] items-center justify-center p-6 lg:px-4 bg-slate-200 rounded-2xl mb-20">
       <div className="lg:w-6/12 mb-6">
-        <h1 className="text-center font-bold text-5xl md:text-7xl text-slate-900 md:leading-normal">
+        <h1 className="text-center font-bold text-5xl md:text-6xl text-slate-900 md:leading-normal">
           {data?.excerpt}.
         </h1>
       </div>

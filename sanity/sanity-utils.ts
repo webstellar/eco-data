@@ -16,13 +16,12 @@ export async function getIndustries(): Promise<Industry[]> {
         'image': image.asset->url,
         'infographics': infographics.asset->url,
         content,
-        dataVisuals,
          "category": *[_type=='category' && references(^._id)]{ 
   	      name,
   	      slug,
           image
 	      },
-        reportUrl,
+        report,
         highlight[]{
           _id, 
           title,
@@ -41,6 +40,11 @@ export async function getPages(): Promise<Page[]> {
         name,
         'slug': slug.current,
         'image': image.asset->url,
+        'infographics': infographics.asset->url,
+        report,
+        carousel[]{
+          'image': image.asset->url
+        }
         'featuredImageOne': featuredImageOne.asset->url,
         'featuredImageTwo': featuredImageTwo.asset->url,
         'featuredImageThree': featuredImageThree.asset->url,
@@ -148,6 +152,11 @@ export async function getPage(slug: string): Promise<Page> {
         'featuredImageOne': featuredImageOne.asset->url,
         'featuredImageTwo': featuredImageTwo.asset->url,
         'featuredImageThree': featuredImageThree.asset->url,
+        'infographics': infographics.asset->url,
+        report,
+        carousel[]{
+          'image': image.asset->url
+        },
         excerpt,
         content,
         color,
@@ -186,13 +195,12 @@ export async function getIndustry(slug: string): Promise<Industry> {
         'image': image.asset->url,
         'infographics': infographics.asset->url,
         content,
-        dataVisuals,
         "category": *[_type=='category' && references(^._id)]{ 
   	      name,
   	      slug,
           image
 	      },
-        reportUrl,
+        report,
         highlight[]{
           _id, 
           title,

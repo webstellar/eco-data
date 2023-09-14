@@ -6,18 +6,20 @@ import Image from "next/image";
 import { Dialog, Popover } from "@headlessui/react";
 import { HiBars3CenterLeft, HiXMark } from "react-icons/hi2";
 
+import { BiSolidHome } from "react-icons/bi";
+
 import Logo from "../../public/ecodata.svg";
 
 interface linkProps {
   id?: number;
-  title?: string;
+  title?: string | any;
   url?: string;
 }
 
 const links: linkProps[] = [
   {
     id: 1,
-    title: "Home",
+    title: <BiSolidHome />,
     url: "/",
   },
   {
@@ -37,21 +39,26 @@ const links: linkProps[] = [
   },
   {
     id: 5,
-    title: "Annual",
+    title: "Budget",
     url: "annual-budget",
   },
   {
     id: 6,
+    title: "Country",
+    url: "country",
+  },
+  {
+    id: 7,
     title: "Foreign Exchange",
     url: "foreign-exchange",
   },
   {
-    id: 7,
+    id: 8,
     title: "Industries",
     url: "industries",
   },
   {
-    id: 8,
+    id: 9,
     title: "Publications",
     url: "publications",
   },
@@ -88,7 +95,7 @@ const Header: React.FC = () => {
 
         {/* Desktop Navigation and Button*/}
         <div className="hidden lg:flex lg:justify-end items-center gap-x-5">
-          <Popover.Group className="hidden lg:flex lg:gap-x-5">
+          <Popover.Group className="hidden lg:flex lg:gap-x-5 items-center justify-center">
             {links &&
               links.map((link) => (
                 <Link
