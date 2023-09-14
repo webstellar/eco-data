@@ -30,6 +30,19 @@ const page = {
       ],
     },
     {
+      name: "infographics",
+      title: "Infographics",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        {
+          name: "alt",
+          title: "Alt",
+          type: "string",
+        },
+      ],
+    },
+    {
       name: "excerpt",
       title: "Excerpt",
       type: "string",

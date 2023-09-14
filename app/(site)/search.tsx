@@ -6,10 +6,32 @@ import Image from "next/image";
 
 import { HiChevronRight } from "react-icons/hi2";
 import { BsSearch } from "react-icons/bs";
-import { Industry } from "@/types/Industry";
 
-import { SkeletonCard } from "@/components/skeletion/Skeletioncard";
 import Loader from "@/components/loader/Loader";
+import IndustryCategoryblock from "@/components/categoryblock/IndustryCategoryblock";
+
+type Universal = {
+  [key: string]: string;
+};
+
+type Category = {
+  _id: string;
+  _createdAt: Date;
+  name: string;
+  slug: {
+    current: string;
+    _type: string;
+  };
+  industries: Universal[];
+};
+
+type Industry = {
+  _id?: string;
+  name: string;
+  image: string;
+  slug?: string;
+  category: Category | undefined;
+};
 
 const Search: React.FC = () => {
   const [query, setQuery] = useState<string>("");
@@ -51,7 +73,9 @@ const Search: React.FC = () => {
     }
   }
 
-  let skeletonCards = Array(5).fill(0);
+  //let skeletonCards = Array(5).fill(0);
+
+  console.log("result = " + results);
 
   return (
     <div className="-mt-20 mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 mb-20">
@@ -72,6 +96,18 @@ const Search: React.FC = () => {
           </form>
         </div>
       </div>
+
+      {/* 
+      <div className="mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 mb-20">
+        <div className="mx-auto w-full grid grid-cols-2 md:grid-cols-5 gap-6 items-center justify-between">
+          {!results.category
+            ? undefined
+            : results?.category.map((item: Category) => (
+                <IndustryCategoryblock key={item._id} data={item} />
+              ))}
+        </div>
+      </div>
+      */}
 
       <div className="mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 -mt-5">
         {loading ? (

@@ -15,4 +15,5 @@ export type Industry = {
   dataVisuals: PortableTextBlock[];
   category: Universal[];
   highlight: Universal[];
+  infographics: string
 };

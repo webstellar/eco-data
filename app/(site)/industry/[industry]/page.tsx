@@ -4,6 +4,7 @@ import Keypoint from "@/components/keypoint/Keypoint";
 
 import { getIndustry } from "@/sanity/sanity-utils";
 import Industryform from "@/components/industryform/Industryform";
+import Infographics from "@/components/infographics/Infographics";
 
 type Props = {
   params: { industry: string };
@@ -16,7 +17,8 @@ export default async function page({ params }: Props) {
   return (
     <div>
       <Industryhero data={industry} />
-      <Report data={industry} />
+      {industry?.infographics && <Infographics data={industry} />}
+      {industry?.infographics && <Report data={industry} />}
       <Keypoint data={industry} />
       <Industryform />
     </div>

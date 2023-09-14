@@ -14,6 +14,7 @@ export async function getIndustries(): Promise<Industry[]> {
         name,
         'slug': slug.current,
         'image': image.asset->url,
+        'infographics': infographics.asset->url,
         content,
         dataVisuals,
          "category": *[_type=='category' && references(^._id)]{ 
@@ -183,6 +184,7 @@ export async function getIndustry(slug: string): Promise<Industry> {
         name,
         'slug': slug.current,
         'image': image.asset->url,
+        'infographics': infographics.asset->url,
         content,
         dataVisuals,
         "category": *[_type=='category' && references(^._id)]{ 

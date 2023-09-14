@@ -30,6 +30,19 @@ const industry = {
       ],
     },
     {
+      name: "infographics",
+      title: "Infographics",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        {
+          name: "alt",
+          title: "Alt",
+          type: "string",
+        },
+      ],
+    },
+    {
       title: "Category",
       name: "category",
       type: "reference",
