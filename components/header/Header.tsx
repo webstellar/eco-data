@@ -7,6 +7,7 @@ import { Dialog, Popover } from "@headlessui/react";
 import { HiBars3CenterLeft, HiXMark } from "react-icons/hi2";
 
 import { BiSolidHome } from "react-icons/bi";
+import { usePathname } from "next/navigation";
 
 import Logo from "../../public/ecodata.svg";
 
@@ -67,8 +68,11 @@ const links: linkProps[] = [
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
+  const pathname = usePathname();
+  const href = "/";
+
   return (
-    <header className="bg-transparent mb-10">
+    <header className="bg-transparent mb-10 relative z-50">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-4"
         aria-label="Global"
@@ -85,8 +89,11 @@ const Header: React.FC = () => {
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-900"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5"
             onClick={() => setMobileMenuOpen(true)}
+            style={{
+              color: pathname === href ? "#ffffff" : "#000000",
+            }}
           >
             <span className="sr-only">Open main menu</span>
             <HiBars3CenterLeft className="h-6 w-6" aria-hidden="true" />
@@ -100,8 +107,11 @@ const Header: React.FC = () => {
               links.map((link) => (
                 <Link
                   href={`/${link.url}`}
-                  className="text-base font-normal leading-6 text-gray-900 hover:text-eco-blue-100 active:text-eco-blue-100 active:font-bold hover:font-semibold"
+                  className="text-base font-normal leading-6 hover:text-eco-blue-100 active:text-eco-blue-100 active:font-bold hover:font-semibold"
                   key={link.id}
+                  style={{
+                    color: pathname === href ? "#ffffff" : "#000000",
+                  }}
                 >
                   {link.title}
                 </Link>

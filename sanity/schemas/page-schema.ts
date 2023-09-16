@@ -35,15 +35,20 @@ const page = {
       type: "array",
       of: [
         {
-          name: "image",
-          title: "image",
-          type: "image",
-          options: { hotspot: true },
+          type: "object",
           fields: [
             {
-              name: "alt",
-              title: "Alt",
-              type: "string",
+              name: "carousel",
+              title: "Carousel Image",
+              type: "image",
+              options: { hotspot: true },
+              fields: [
+                {
+                  name: "alt",
+                  title: "Alt",
+                  type: "string",
+                },
+              ],
             },
           ],
         },

@@ -43,7 +43,7 @@ export async function getPages(): Promise<Page[]> {
         'infographics': infographics.asset->url,
         report,
         carousel[]{
-          'image': image.asset->url
+          'carousel': carousel.asset->url
         }
         'featuredImageOne': featuredImageOne.asset->url,
         'featuredImageTwo': featuredImageTwo.asset->url,
@@ -82,6 +82,11 @@ export async function getHomePages(): Promise<Page[]> {
         name,
         'slug': slug.current,
         'image': image.asset->url,
+        'infographics': infographics.asset->url,
+        report,
+        carousel[]{
+           'carousel': carousel.asset->url
+        },
         'featuredImageOne': image.asset->url,
         'featuredImageTwo': image.asset->url,
         'featuredImageThree': image.asset->url,
@@ -155,7 +160,7 @@ export async function getPage(slug: string): Promise<Page> {
         'infographics': infographics.asset->url,
         report,
         carousel[]{
-          'image': image.asset->url
+           'carousel': carousel.asset->url
         },
         excerpt,
         content,
@@ -168,7 +173,7 @@ export async function getPage(slug: string): Promise<Page> {
           'icon': icon.asset->url,
         },
         benefit,
-        benefitDescription,
+        benefitDescription, 
         feature,
         features[]{
           featureTitle,
