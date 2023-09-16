@@ -38,32 +38,26 @@ const Homecarousel: React.FC = () => {
 
   return (
     <div className="-mt-36 mb-20">
-      {isLoading ? (
-        <div className="mx-auto flex flex-1 items-center justify-center">
-          <Loader />
-        </div>
-      ) : (
-        <div className="max-w-full mx-auto flex">
-          <Swiper
-            navigation={true}
-            modules={[Navigation, Autoplay]}
-            spaceBetween={1}
-            slidesPerView={1}
-          >
-            {results[0].carousel.map((item, i) => (
-              <SwiperSlide key={i}>
-                <Image
-                  alt="..."
-                  src={item.carousel}
-                  width={1920}
-                  height={1280}
-                  className="block w-full object-cover h-[400px] md:h-[600px]"
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      )}
+      <div className="max-w-full mx-auto flex">
+        <Swiper
+          navigation={true}
+          modules={[Navigation, Autoplay]}
+          spaceBetween={1}
+          slidesPerView={1}
+        >
+          {results[0].carousel.map((item, i) => (
+            <SwiperSlide key={i}>
+              <Image
+                alt="..."
+                src={item.carousel}
+                width={1920}
+                height={1280}
+                className="block w-full object-cover h-[400px] md:h-[600px]"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 };
