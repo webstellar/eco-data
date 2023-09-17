@@ -1,8 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { sendContactForm } from "@/utils/api"; //here
+import { verifyCaptchaAction, sendContactForm } from "@/utils/api";
+
+import { useReCaptcha } from "next-recaptcha-v3";
+
+import { ImSpinner2 } from "react-icons/im";
 
 type valueProps = {
   [key: string]: string;
@@ -18,6 +22,9 @@ const initState: valueProps = {
 
 const Contactform: React.FC = () => {
   const [state, setState] = useState(initState);
+  const [loading, setLoading] = useState(false);
+
+  const { executeRecaptcha } = useReCaptcha();
 
   const handleChange = (
     e:
@@ -30,23 +37,39 @@ const Contactform: React.FC = () => {
       [e.target.name]: e.target.value,
     }));
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(JSON.stringify(state)); //here
-    try {
-      await sendContactForm(state); //i didn't fetch directly here rather I added the sendContactform func
-      toast("Your details was sent", {
-        hideProgressBar: true,
-        autoClose: 2000,
-        type: "success",
-      });
-      setState(initState);
-    } catch (error) {
-      setState((prev) => ({
-        ...prev,
-      }));
-    }
-  };
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      // console.log(JSON.stringify(state));
+
+      setLoading(true);
+      if (!executeRecaptcha) {
+        console.log("Execute recaptcha not yet available");
+        return;
+      }
+
+      const token = await executeRecaptcha("contactform_submit");
+      const verified = await verifyCaptchaAction(token);
+
+      if (verified) {
+        try {
+          await sendContactForm(state);
+          toast("Your details was sent", {
+            hideProgressBar: true,
+            autoClose: 2000,
+            type: "success",
+          });
+          setState(initState);
+          setLoading(false);
+        } catch (error) {
+          setState((prev) => ({
+            ...prev,
+          }));
+        }
+      }
+    },
+    [executeRecaptcha, state]
+  );
 
   return (
     <div>
@@ -62,6 +85,8 @@ const Contactform: React.FC = () => {
                   First Name
                 </label>
                 <input
+                  required
+                  title="firstname"
                   type="text"
                   name="firstname"
                   value={state.firstname}
@@ -74,6 +99,8 @@ const Contactform: React.FC = () => {
                   Last Name
                 </label>
                 <input
+                  required
+                  title="lastname"
                   type="text"
                   name="lastname"
                   value={state.lastname}
@@ -87,6 +114,8 @@ const Contactform: React.FC = () => {
                   Email
                 </label>
                 <input
+                  required
+                  title="email"
                   type="email"
                   name="email"
                   value={state.email}
@@ -99,6 +128,8 @@ const Contactform: React.FC = () => {
                   Organization (optional)
                 </label>
                 <input
+                  required
+                  title="organization"
                   type="text"
                   name="organization"
                   value={state.organization}
@@ -111,6 +142,8 @@ const Contactform: React.FC = () => {
                   Message
                 </label>
                 <textarea
+                  required
+                  title="message"
                   rows={8}
                   name="message"
                   value={state.message}
@@ -121,10 +154,19 @@ const Contactform: React.FC = () => {
 
               <div className="grid col-span-1 gap-y-2 w-2/4">
                 <button
-                  className="bg-eco-blue-100 text-gray-100 px-8 py-2 "
+                  className="bg-eco-blue-100 text-gray-100 px-8 py-2 flex gap-x-3 items-center justify-center"
                   type="submit"
                 >
-                  Send
+                  {loading ? (
+                    <>
+                      <div>
+                        <ImSpinner2 className="animate-spin" />
+                      </div>
+                      <div className="mr-3">Sending..</div>
+                    </>
+                  ) : (
+                    <span>Send</span>
+                  )}
                 </button>
               </div>
             </div>

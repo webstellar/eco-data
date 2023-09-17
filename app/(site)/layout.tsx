@@ -2,6 +2,7 @@ import "../globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Header from "@/components/header/Header";
+import { ReCaptchaProvider } from "next-recaptcha-v3";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -26,15 +27,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={poppins.className}>
-        <Header />
-        {children}
-        <Newsletter />
-        <Footer />
-        <Analytics />
-        <ToastContainer />
-      </body>
-    </html>
+    <ReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_SITE_KEY}>
+      <html lang="en">
+        <body className={poppins.className}>
+          <Header />
+          {children}
+          <Newsletter />
+          <Footer />
+          <Analytics />
+          <ToastContainer />
+        </body>
+      </html>
+    </ReCaptchaProvider>
   );
 }
