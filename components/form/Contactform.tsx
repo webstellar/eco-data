@@ -2,7 +2,8 @@
 
 import React, { useCallback, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { verifyCaptchaAction, sendContactForm } from "@/utils/api";
+import { verifyCaptchaAction } from "@/utils/verify";
+import { sendContactForm } from "@/utils/api";
 
 import { useReCaptcha } from "next-recaptcha-v3";
 
@@ -43,24 +44,22 @@ const Contactform: React.FC = () => {
       // console.log(JSON.stringify(state));
 
       setLoading(true);
-      if (!executeRecaptcha) {
-        console.log("Execute recaptcha not yet available");
-        return;
-      }
-
       const token = await executeRecaptcha("contactform_submit");
+
+      console.log(token);
       const verified = await verifyCaptchaAction(token);
 
       if (verified) {
         try {
+          console.log(state);
           await sendContactForm(state);
           toast("Your details was sent", {
             hideProgressBar: true,
             autoClose: 2000,
             type: "success",
           });
-          setState(initState);
           setLoading(false);
+          setState(initState);
         } catch (error) {
           setState((prev) => ({
             ...prev,
