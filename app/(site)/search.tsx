@@ -109,7 +109,7 @@ const Search: React.FC = () => {
         {loading ? (
           <Loader />
         ) : (
-          <div className="w-full grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-x-10 gap-y-5 mx-auto justify-between items-stretch">
+          <div className="w-full grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-x-5 gap-y-5 mx-auto justify-between items-stretch">
             {results &&
               results.map((industry) => (
                 <Industriescard key={industry._id} data={industry} />

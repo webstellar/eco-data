@@ -13,7 +13,7 @@ interface categoryProps {
 const Categorycard: React.FC<categoryProps> = ({ data }) => {
   return (
     <div className="mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 mb-20">
-      <div className="grid grid-cols-4 mx-auto justify-start">
+      <div className="w-full grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-x-10 gap-y-5 mx-auto justify-between items-stretch">
         {data.industries &&
           data.industries.map((category) => (
             <div

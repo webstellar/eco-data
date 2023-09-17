@@ -17,9 +17,9 @@ const Infographics: React.FC<industryProps> = ({ data }) => {
         <Image
           src={data.infographics}
           alt={data.name}
-          width={500}
-          height={900}
-          className="w-full object-cover h-[500px]"
+          width={2000}
+          height={10000}
+          className="w-full object-cover h-full"
         />
       </div>
     </div>

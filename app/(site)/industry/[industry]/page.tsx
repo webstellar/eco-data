@@ -18,8 +18,8 @@ export default async function page({ params }: Props) {
     <div>
       <Industryhero data={industry} />
       {industry?.infographics && <Infographics data={industry} />}
-      {industry?.infographics && <Report data={industry} />}
-      <Keypoint data={industry} />
+      {industry?.report && <Report data={industry} />}
+      {industry?.highlight && <Keypoint data={industry} />}
       <Industryform />
     </div>
   );

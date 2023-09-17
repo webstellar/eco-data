@@ -50,7 +50,7 @@ const Industryform: React.FC = () => {
   };
 
   return (
-    <div>
+    <div id="form">
       <div className="mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 mb-20">
         <div className="font-bold mb-10">
           <h2 className="text-3xl md:text-5xl">Sign up to download report.</h2>

@@ -1,5 +1,4 @@
 import { PortableTextBlock } from "sanity";
-import Infographics from "@/components/infographics/Infographics";
 
 type Universal = {
   [key: string]: string;

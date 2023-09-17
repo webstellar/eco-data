@@ -21,10 +21,10 @@ const Feature: React.FC<pageProps> = ({ data }) => {
 
       <div className="mx-auto grid md:grid-cols-2 gap-x-20 gap-y-8 items-center justify-between">
         <div className="col-span-1 grid md:grid-cols-2 gap-4 items-center justify-stretch">
-          <div className="grid gap-4 h-700">
+          <div className="grid gap-4">
             <div className="h-full">
               <Image
-                className="object-cover rounded-3xl md:rounded-l-3xl"
+                className="md:h-[450px] object-cover rounded-l-3xl md:flex hidden"
                 src={data?.featuredImageOne}
                 alt={data?.feature}
                 width={450}
@@ -35,7 +35,7 @@ const Feature: React.FC<pageProps> = ({ data }) => {
           <div className="hidden md:grid gap-4 items-stretch justify-stretch object-fill">
             <div>
               <Image
-                className="max-w-full rounded-r-3xl"
+                className="max-w-full rounded-r-3xl "
                 src={data?.featuredImageTwo}
                 alt=""
                 width={450}

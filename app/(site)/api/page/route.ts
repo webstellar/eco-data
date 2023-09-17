@@ -4,7 +4,7 @@ import { client } from "@/sanity/client";
 export async function GET() {
   try {
     const results = await client.fetch(
-      `*[_type == "page" && name == 'Home']{carousel[]{"carousel": carousel.asset->url}}`,
+      `*[_type == "page" && name == 'Home']{carousel[]{"carousel": carousel.asset->url, title, description}}`,
       {}
     );
 

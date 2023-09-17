@@ -43,7 +43,9 @@ export async function getPages(): Promise<Page[]> {
         'infographics': infographics.asset->url,
         report,
         carousel[]{
-          'carousel': carousel.asset->url
+          'carousel': carousel.asset->url,
+          title,
+          description
         }
         'featuredImageOne': featuredImageOne.asset->url,
         'featuredImageTwo': featuredImageTwo.asset->url,
@@ -85,7 +87,9 @@ export async function getHomePages(): Promise<Page[]> {
         'infographics': infographics.asset->url,
         report,
         carousel[]{
-           'carousel': carousel.asset->url
+           'carousel': carousel.asset->url,
+           title,
+           description
         },
         'featuredImageOne': image.asset->url,
         'featuredImageTwo': image.asset->url,
@@ -160,7 +164,9 @@ export async function getPage(slug: string): Promise<Page> {
         'infographics': infographics.asset->url,
         report,
         carousel[]{
-           'carousel': carousel.asset->url
+           'carousel': carousel.asset->url,
+           title,
+           description
         },
         excerpt,
         content,

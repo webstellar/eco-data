@@ -47,7 +47,8 @@ const Newsletter = () => {
   return (
     <section className="mx-auto max-w-5xl items-center justify-center p-6 lg:px-4 m-10">
       <h3 className="text-center font-bold text-3xl lg:text-5xl md:leading-loose mb-10">
-        Sign up for our weekly newsletter to never miss any our report analysis.
+        Sign up for our weekly newsletter to never miss any of our report
+        analysis.
       </h3>
 
       <form onSubmit={handleSubmit}>
