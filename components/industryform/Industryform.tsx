@@ -1,8 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { sendIndustryForm } from "@/utils/api";
+import { verifyCaptchaAction } from "@/utils/verify";
+import { useReCaptcha } from "next-recaptcha-v3";
+import { ImSpinner2 } from "react-icons/im";
 
 type valueProps = {
   [key: string]: string;
@@ -19,6 +22,8 @@ const initState: valueProps = {
 
 const Industryform: React.FC = () => {
   const [state, setState] = useState(initState);
+  const [loading, setLoading] = useState(false);
+  const { executeRecaptcha } = useReCaptcha();
 
   const handleChange = (
     e:
@@ -31,23 +36,32 @@ const Industryform: React.FC = () => {
       [e.target.name]: e.target.value,
     }));
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    //console.log(JSON.stringify(state));
-    try {
-      await sendIndustryForm(state);
-      toast("Your details was sent", {
-        hideProgressBar: true,
-        autoClose: 2000,
-        type: "success",
-      });
-      setState(initState);
-    } catch (error) {
-      setState((prev) => ({
-        ...prev,
-      }));
-    }
-  };
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setLoading(true);
+      const token = await executeRecaptcha("contactform_submit");
+      const verified = await verifyCaptchaAction(token);
+      //console.log(JSON.stringify(state));
+
+      if (verified) {
+        try {
+          await sendIndustryForm(state);
+          toast("Your details was sent", {
+            hideProgressBar: true,
+            autoClose: 2000,
+            type: "success",
+          });
+          setState(initState);
+        } catch (error) {
+          setState((prev) => ({
+            ...prev,
+          }));
+        }
+      }
+    },
+    [executeRecaptcha, state]
+  );
 
   return (
     <div id="form">
@@ -63,6 +77,7 @@ const Industryform: React.FC = () => {
                   First Name
                 </label>
                 <input
+                  title="firstname"
                   type="text"
                   name="firstname"
                   value={state.firstname}
@@ -75,6 +90,7 @@ const Industryform: React.FC = () => {
                   Last Name
                 </label>
                 <input
+                  title="lastname"
                   type="text"
                   name="lastname"
                   value={state.lastname}
@@ -88,6 +104,7 @@ const Industryform: React.FC = () => {
                   Email
                 </label>
                 <input
+                  title="email"
                   type="email"
                   name="email"
                   className="border-gray-800 border-b-2 border-x-2 focus:outline-none w-full px-2 py-1"
@@ -98,6 +115,7 @@ const Industryform: React.FC = () => {
                   Organization (optional)
                 </label>
                 <input
+                  title="organization"
                   type="text"
                   name="organization"
                   value={state.organization}
@@ -110,6 +128,7 @@ const Industryform: React.FC = () => {
                   Industry
                 </label>
                 <select
+                  title="industry"
                   data-te-select-init
                   className="border-gray-800 border-b-2 border-x-2 focus:outline-none w-full px-2 py-1"
                   name="industry"
@@ -138,6 +157,7 @@ const Industryform: React.FC = () => {
                   Message
                 </label>
                 <textarea
+                  title="message"
                   rows={8}
                   name="message"
                   value={state.message}
@@ -151,7 +171,16 @@ const Industryform: React.FC = () => {
                   className="bg-eco-blue-100 text-gray-100 px-8 py-2 "
                   type="submit"
                 >
-                  Send
+                  {loading ? (
+                    <>
+                      <div>
+                        <ImSpinner2 className="animate-spin" />
+                      </div>
+                      <div className="mr-3">Sending..</div>
+                    </>
+                  ) : (
+                    <span>Send</span>
+                  )}
                 </button>
               </div>
             </div>

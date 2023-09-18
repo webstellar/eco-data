@@ -17,8 +17,19 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Eco Dataplace",
+  title: {
+    default: "Eco Dataplace",
+    template: "%s | Eco Dataplace",
+  },
   description: "Your data hub for all economic data analysis",
+  keywords: [
+    "Data Analysis",
+    "Data Experts",
+    "Data analysis of Economics, Lagos",
+  ],
+  creator: "Endurance Kwamu",
+  publisher: "Peter Onyegbule",
+  authors: [{ name: "Peter Onyegbule", url: "https://peteronyegbule.ng" }],
 };
 
 export default function RootLayout({

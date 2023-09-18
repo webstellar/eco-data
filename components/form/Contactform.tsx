@@ -6,7 +6,6 @@ import { verifyCaptchaAction } from "@/utils/verify";
 import { sendContactForm } from "@/utils/api";
 
 import { useReCaptcha } from "next-recaptcha-v3";
-
 import { ImSpinner2 } from "react-icons/im";
 
 type valueProps = {
@@ -45,8 +44,6 @@ const Contactform: React.FC = () => {
 
       setLoading(true);
       const token = await executeRecaptcha("contactform_submit");
-
-      console.log(token);
       const verified = await verifyCaptchaAction(token);
 
       if (verified) {

@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Industryhero from "@/components/industryhero/Industryhero";
 import Report from "@/components/report/Report";
 import Keypoint from "@/components/keypoint/Keypoint";
@@ -8,6 +9,16 @@ import Infographics from "@/components/infographics/Infographics";
 
 type Props = {
   params: { industry: string };
+};
+
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  const slug = params.industry;
+  const industry = await getIndustry(slug);
+  return {
+    title: `${industry.name}`,
+  };
 };
 
 export default async function page({ params }: Props) {
