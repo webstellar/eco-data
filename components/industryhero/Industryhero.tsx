@@ -39,7 +39,12 @@ const Industryhero: React.FC<pageProps> = ({ data }) => {
       <div className="mx-auto grid grid-cols-2 justify-between items-center gap-x-10 gap-y-5">
         <div className="order-2 md:order-1 col-span-full md:col-span-1 flex flex-col mx-auto text-left gap-y-5">
           <div className="font-bold">
-            <h1 className="text-3xl md:text-5xl">{data.name}.</h1>
+            <h1
+              className="text-3xl md:text-5xl"
+              style={{ lineHeight: "1.2em" }}
+            >
+              {data.name}.
+            </h1>
           </div>
 
           {data.category &&
@@ -99,9 +104,9 @@ const Industryhero: React.FC<pageProps> = ({ data }) => {
           <Image
             src={data.image}
             alt={data.name}
-            width={400}
-            height={600}
-            className="rounded-3xl grow"
+            width={1000}
+            height={1200}
+            className="rounded-3xl grow object-cover"
           />
         </div>
       </div>

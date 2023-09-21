@@ -12,7 +12,10 @@ const Report: React.FC<pageProps> = ({ data }) => {
       <div className="font-bold">
         <h2 className="text-left text-3xl md:text-5xl">Interactive Report.</h2>
       </div>
-      <div dangerouslySetInnerHTML={{ __html: data?.report }} />
+      <div
+        className="h-auto max-w-full flex flex-1 justify-start items-center w-full mx-auto"
+        dangerouslySetInnerHTML={{ __html: data?.report }}
+      />
     </div>
   );
 };
