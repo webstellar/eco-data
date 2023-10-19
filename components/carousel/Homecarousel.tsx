@@ -36,7 +36,7 @@ const Homecarousel: React.FC = () => {
   }, []);
 
   return (
-    <div className="-mt-36 mb-20">
+    <div className="-mt-40 mb-20">
       {isLoading ? (
         <Skeletionhero />
       ) : (
@@ -60,7 +60,7 @@ const Homecarousel: React.FC = () => {
 
                   <div className="absolute top-2/4 bottom-2/4 lg:right-1/4 lg:left-1/4 mx-auto max-w-7xl flex flex-col items-center justify-center p-6 lg:px-4 px-14">
                     <div className="mb-6">
-                      <h1 className="text-center font-bold text-5xl md:text-6xl text-slate-100 md:leading-normal">
+                      <h1 className="text-center md:font-semibold text-3xl md:text-6xl text-slate-100 md:leading-normal">
                         {item?.title}.
                       </h1>
                     </div>

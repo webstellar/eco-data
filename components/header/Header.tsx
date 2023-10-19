@@ -9,7 +9,7 @@ import { HiBars3CenterLeft, HiXMark } from "react-icons/hi2";
 import { BiSolidHome } from "react-icons/bi";
 import { usePathname } from "next/navigation";
 
-import Logo from "../../public/ecodata.svg";
+import Logo from "../../public/eco-data.png";
 
 interface linkProps {
   id?: number;
@@ -81,7 +81,7 @@ const Header: React.FC = () => {
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <Image className="h-8 w-auto" src={Logo} alt="ecodata-logo" />
+            <Image className="h-16 w-auto" src={Logo} alt="ecodata-logo" />
           </Link>
         </div>
 
@@ -118,12 +118,21 @@ const Header: React.FC = () => {
               ))}
           </Popover.Group>
 
-          <button className="bg-eco-blue-100 py-2 px-3 rounded-full">
+          <button className="bg-eco-blue-100 py-2 px-5 rounded-2xl">
             <Link
               href="/contact-us"
               className="text-base font-normal leading-6 text-gray-50"
             >
               Contact Us
+            </Link>
+          </button>
+
+          <button className="bg-green-600 py-2 px-5 rounded-2xl">
+            <Link
+              href="/donate"
+              className="text-base font-normal leading-6 text-gray-50"
+            >
+              Donate
             </Link>
           </button>
         </div>
@@ -170,6 +179,12 @@ const Header: React.FC = () => {
                   className="-mx-3 block px-3 py-2.5 text-base font-normal leading-7 text-gray-900 hover:bg-gray-100"
                 >
                   Contact Us
+                </Link>
+                <Link
+                  href="/donate"
+                  className="-mx-3 block px-3 py-2.5 text-base font-normal leading-7 text-gray-900 hover:bg-gray-100"
+                >
+                  Donate
                 </Link>
               </div>
             </div>
