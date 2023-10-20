@@ -6,6 +6,8 @@ import { Benefit } from "@/types/Benefit";
 import clientConfig from "./config/client-config";
 import { Category } from "@/types/Category";
 
+export const revalidate = 60;
+
 export async function getIndustries(): Promise<Industry[]> {
   return createClient(clientConfig).fetch(
     groq`*[_type == 'industry']{
@@ -28,7 +30,8 @@ export async function getIndustries(): Promise<Industry[]> {
           description
         }
     }
-    `
+    `,
+    { next: { revalidate: 3600 } }
   );
 }
 
@@ -73,7 +76,8 @@ export async function getPages(): Promise<Page[]> {
           'profile': profile.asset->url
         }
     }
-    `
+    `,
+    { next: { revalidate: 3600 } }
   );
 }
 export async function getHomePages(): Promise<Page[]> {
@@ -117,7 +121,8 @@ export async function getHomePages(): Promise<Page[]> {
           'profile': profile.asset->url
         }
     }
-    `
+    `,
+    { next: { revalidate: 3600 } }
   );
 }
 
@@ -131,7 +136,8 @@ export async function getPublications(): Promise<Publication[]> {
         'image': image.asset->url,
         content,
     }
-    `
+    `,
+    { next: { revalidate: 3600 } }
   );
 }
 
@@ -146,7 +152,8 @@ export async function getBenefits(): Promise<Benefit[]> {
         content,
         'icon': icon.asset->url
     }
-    `
+    `,
+    { next: { revalidate: 3600 } }
   );
 }
 
@@ -192,7 +199,8 @@ export async function getPage(slug: string): Promise<Page> {
         }
     }
     `,
-    { slug }
+    { slug },
+    { next: { revalidate: 3600 } }
   );
 }
 
@@ -219,7 +227,8 @@ export async function getIndustry(slug: string): Promise<Industry> {
         }
     }
     `,
-    { slug }
+    { slug },
+    { next: { revalidate: 3600 } }
   );
 }
 
@@ -234,7 +243,8 @@ export async function getPublication(slug: string): Promise<Publication> {
         content,
     }
     `,
-    { slug }
+    { slug },
+    { next: { revalidate: 3600 } }
   );
 }
 
@@ -252,7 +262,8 @@ export async function getCategories(): Promise<Category[]> {
           'image': image.asset->url,
 	      }
     }
-    `
+    `,
+    { next: { revalidate: 3600 } }
   );
 }
 
@@ -271,6 +282,7 @@ export async function getCategory(slug: string): Promise<Category> {
 	      }
     }
     `,
-    { slug }
+    { slug },
+    { next: { revalidate: 3600 } }
   );
 }

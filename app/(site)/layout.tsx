@@ -1,6 +1,6 @@
 import "../globals.css";
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Jost } from "next/font/google";
 import Header from "@/components/header/Header";
 import { ReCaptchaProvider } from "next-recaptcha-v3";
 
@@ -11,8 +11,8 @@ import Newsletter from "@/components/newsletter/Newsletter";
 
 import { Analytics } from "@vercel/analytics/react";
 
-const poppins = Poppins({
-  weight: ["200", "300", "400", "500", "600", "700"],
+const jost = Jost({
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
@@ -40,7 +40,7 @@ export default function RootLayout({
   return (
     <ReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_SITE_KEY}>
       <html lang="en">
-        <body className={poppins.className}>
+        <body className={jost.className}>
           <Header />
           {children}
           <Newsletter />

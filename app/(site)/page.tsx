@@ -4,6 +4,8 @@ import Benefit from "@/components/benefits/Benefit";
 import Feature from "@/components/features/Feature";
 import Homecarousel from "@/components/carousel/Homecarousel";
 
+export const revalidate = 60; // revalidate at most every hour
+
 const Home = async () => {
   const home = await getHomePages();
   return (
