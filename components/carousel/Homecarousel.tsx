@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Loader from "../loader/Loader";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 
@@ -26,7 +25,9 @@ const Homecarousel: React.FC = () => {
 
   useEffect(() => {
     const getFacts = async () => {
-      const response = await fetch("/api/page");
+      const response = await fetch("/api/page", {
+        next: { revalidate: 60 }, // Revalidate every 60 seconds
+      });
       const data = await response.json();
       setResults(data);
       setIsLoading(false);
