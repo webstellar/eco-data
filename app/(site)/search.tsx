@@ -42,7 +42,6 @@ const Search: React.FC = () => {
         method: "POST",
       });
       const data = await response.json();
-
       setResults(data);
     };
 
@@ -55,7 +54,6 @@ const Search: React.FC = () => {
         method: "GET",
       });
       const data = await response.json();
-
       setCategory(data);
     };
 
@@ -75,8 +73,6 @@ const Search: React.FC = () => {
       console.error(error);
     }
   }
-
-  //let skeletonCards = Array(5).fill(0);
 
   return (
     <div className="-mt-20 mx-auto max-w-7xl flex flex-col gap-x-20 gap-y-8 items-center justify-between p-6 lg:px-4 mb-10">
@@ -126,7 +122,3 @@ const Search: React.FC = () => {
 };
 
 export default Search;
-
-//this is the frontend form
-//obivously it should be "use client"
-//sadly when I add it, I can't run the search

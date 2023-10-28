@@ -48,7 +48,11 @@ const Homesearch: React.FC = () => {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search for data on specific industry"
             />
-            <button type="submit" className="absolute left-0 top-0 mt-6 ml-4">
+            <button
+              title="submit"
+              type="submit"
+              className="absolute left-0 top-0 mt-6 ml-4"
+            >
               <BsSearch />
             </button>
           </form>
