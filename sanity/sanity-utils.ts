@@ -200,7 +200,8 @@ export async function getPage(slug: string): Promise<Page> {
     }
     `,
     { slug },
-    { next: { revalidate: 3600 } }
+
+    { next: { revalidate: 3600 }, cache: "no-store" }
   );
 }
 
@@ -286,3 +287,5 @@ export async function getCategory(slug: string): Promise<Category> {
     { next: { revalidate: 3600 } }
   );
 }
+
+export const fetchCache = "force-no-store";
