@@ -7,6 +7,7 @@ import Team from "@/components/team/Team";
 import Contactform from "@/components/form/Contactform";
 import Publicationcard from "@/components/publication/Publicationcard";
 import Search from "../search";
+import ReportPage from "@/components/reportPage/reportPage";
 
 type Props = {
   params: { page: string };
@@ -29,6 +30,7 @@ export default async function page({ params }: Props) {
   return (
     <div>
       <Pagehero data={page} />
+      <ReportPage data={page} />
       {page.slug == "contact-us" && <Contactform />}
       {page.slug == "about-us" && <Team data={page} />}
       {page.slug == "industries" && <Search />}

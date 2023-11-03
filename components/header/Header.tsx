@@ -72,7 +72,7 @@ const Header: React.FC = () => {
   const href = "/";
 
   return (
-    <header className="bg-transparent mb-10 relative z-50">
+    <header className="bg-transparent mb-10 relative z-10">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-4"
         aria-label="Global"
@@ -80,7 +80,7 @@ const Header: React.FC = () => {
         {/* Logo */}
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+            <span className="sr-only">Eco DataPlace</span>
             <Image className="h-16 w-auto" src={Logo} alt="ecodata-logo" />
           </Link>
         </div>
@@ -168,6 +168,7 @@ const Header: React.FC = () => {
                       key={link.id}
                       href={`/${link.url}`}
                       className="-mx-3 block px-3 py-2 text-base font-normal leading-5 text-gray-900 hover:bg-gray-100 hover:font-medium"
+                      onClick={() => setMobileMenuOpen(false)}
                     >
                       {link.title}
                     </Link>
@@ -177,12 +178,14 @@ const Header: React.FC = () => {
                 <Link
                   href="/contact-us"
                   className="-mx-3 block px-3 py-2.5 text-base font-normal leading-7 text-gray-900 hover:bg-gray-100"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Contact Us
                 </Link>
                 <Link
                   href="/donate"
                   className="-mx-3 block px-3 py-2.5 text-base font-normal leading-7 text-gray-900 hover:bg-gray-100"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Donate
                 </Link>
