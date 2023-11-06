@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, FormEvent, useEffect } from "react";
+import React, { useState, FormEvent } from "react";
 
 import { BsSearch } from "react-icons/bs";
 import Categoryblock from "../categoryblock/Categoryblock";
